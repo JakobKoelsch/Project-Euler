@@ -113,7 +113,61 @@ namespace Project_Euler
 
         private static string solve22()
         {
-            throw new NotImplementedException();
+            double score = 0;
+
+            List<String> names = new List<string>();
+            String newName = "";
+            String readLetter = "";
+            UTF8Encoding encoder = new UTF8Encoding(true);
+            bool insideName = false;
+
+            using (System.IO.StreamReader sr = new System.IO.StreamReader(@"..\..\..\p022_names.txt"))
+            {
+                while (!sr.EndOfStream)
+                {
+                    readLetter = ((char)(sr.Read())).ToString();
+                    if (readLetter == "\"")
+                    {
+                        if (insideName)
+                        {
+                            names.Add(newName);
+                            newName = "";
+                        }
+                        insideName = !insideName;
+                    }
+                    else if (insideName)
+                    {
+                        newName += readLetter;
+                    }
+
+                }
+            }
+            names.Sort();
+
+            /* String test = "";
+             foreach (String name in names)
+             {
+                 test += name + "\n";
+             }
+
+             return test;*/
+
+            for (int i = 0; i < names.Count; i++)
+            {
+                score += (i + 1) * p22_score(names[i]);
+            }
+            return score.ToString();
+            //return p22_score("A").ToString();
+        }
+
+        private static int p22_score(string v)
+        {
+            int score = 0;
+            for (int i = 0; i < v.Length; i++)
+            {
+                score += v[i]-64;
+            }
+            return score;
         }
 
         private static string solve21()
