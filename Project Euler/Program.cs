@@ -98,6 +98,8 @@ namespace Project_Euler
                     break;
                 case 21: solution = solve21();
                     break;
+                case 22: solution = solve22();
+                    break;
                 case 67: solution = solve67();
                     break;
                 default:
@@ -107,6 +109,11 @@ namespace Project_Euler
             toClipboard(solution);
             Console.Write(solution);
             Console.WriteLine("\tEllapsed Time {0}ms.", sw.ElapsedMilliseconds);
+        }
+
+        private static string solve22()
+        {
+            throw new NotImplementedException();
         }
 
         private static string solve21()
